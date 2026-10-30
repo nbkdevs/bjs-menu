@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "PlatePlan - Meal Builder & Nutrition",
+  "version": "2.0.0",
+  "description": "A lightweight utility for building meals and previewing calories, protein, carbs, fat, and sodium totals.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "PlatePlan",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["storage"],
+  "host_permissions": [],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "plateplan@example.com",
+      "strict_min_version": "109.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  }
+}

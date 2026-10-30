@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PlatePlan</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="top">
+    <img class="logo" src="icons/icon48.png" alt="" width="36" height="36" />
+    <div>
+      <p class="eyebrow">MEAL PLANNER</p>
+      <h1>PlatePlan</h1>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab on" data-tab="builder" type="button">Build</button>
+    <button class="tab" data-tab="nutrition" type="button">Nutrition</button>
+    <button class="tab" data-tab="meal" type="button">My Meal <span id="mealCount" class="badge">0</span></button>
+  </nav>
+
+  <section id="panel-builder" class="panel on">
+    <p class="hint">Pick a main, then add sides, drinks, or desserts. Totals update live.</p>
+    <div class="roles">
+      <button class="role" data-role="main" type="button"><span>1</span> Main</button>
+      <button class="role" data-role="side" type="button"><span>2</span> Side</button>
+      <button class="role" data-role="drink" type="button"><span>3</span> Drink</button>
+      <button class="role" data-role="dessert" type="button"><span>4</span> Dessert</button>
+    </div>
+    <div id="builderList" class="list"></div>
+  </section>
+
+  <section id="panel-nutrition" class="panel">
+    <input id="search" type="search" placeholder="Search the menu…" autocomplete="off" />
+    <div id="nutritionList" class="list"></div>
+  </section>
+
+  <section id="panel-meal" class="panel">
+    <div id="mealEmpty" class="empty">Your meal is empty. Add a main to start.</div>
+    <div id="mealLines" class="lines"></div>
+    <div id="mealTotals" class="totals hidden">
+      <h2>Your total</h2>
+      <div class="cal" id="totalCal">—</div>
+      <div class="macros">
+        <div><small>Protein</small><strong id="totalPro">—</strong></div>
+        <div><small>Carbs</small><strong id="totalCarb">—</strong></div>
+        <div><small>Fat</small><strong id="totalFat">—</strong></div>
+        <div><small>Sodium</small><strong id="totalNa">—</strong></div>
+      </div>
+      <p id="partialNote" class="partial hidden"></p>
+      <button id="clearMeal" class="ghost" type="button">Clear meal</button>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>Offline nutrition totals · Independent tool</span>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
