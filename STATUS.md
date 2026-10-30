@@ -49,7 +49,7 @@ The theme and extension slots are full. Do not build more browser-store items.
 - ClawHub: https://clawhub.ai/nbkdevs/restaurant-meal-nutrition-planner
 - Smithery: https://smithery.ai/skills/nbkdevs/restaurant-meal-nutrition-planner (dofollow)
 
-## Packages built 30 Oct 2026 (PKT): not published
+## Packages built 30 Oct 2026 (PKT): registries now published, see below
 
 All in `packages/<registry>/`. Same core in each: the bundled BJ's menu (183 items, 132 with published nutrition) and a meal totaler (calories, protein, carbs, fat, sodium; partial totals flag missing items) with a CLI and unit tests. Every README has a Links section with the anchor [BJ's menu](https://bjsmenus.com/), and every homepage field is https://bjsmenus.com/. Names were checked free on each registry. Publish commands are in each LISTING.md and need Nazzal's OK.
 
@@ -67,3 +67,22 @@ All in `packages/<registry>/`. Same core in each: the bundled BJ's menu (183 ite
 | SourceForge | `bjs-menu-nutrition` | 1.0.0 | https://sourceforge.net/projects/bjs-menu-nutrition/ | description + files plan in packages/sourceforge/PROJECT.md |
 | Product Hunt | BJ's Meal Builder | – | – | draft in packages/producthunt/LISTING.md |
 | Amazon Appstore | BJ's Meal Builder (`com.bjsmenus.bjs_meal_builder`) | 1.0.0 (1) | – | release APK built and signed with a new upload key; listing in AMAZON_APPSTORE_LISTING.md; screenshots in releases/amazon/screenshots/ |
+
+## Registry packages published 30 Oct 2026 (~18:35–18:40 PKT), v1.0.0
+
+Owner approved publishing. Link checked on the rendered live page; "dofollow" = no nofollow/ugc on the rel attribute.
+
+| Registry | Package | Live URL | HTTP | Link to https://bjsmenus.com/ | Link type |
+|---|---|---|---|---|---|
+| npm | bjs-menu-nutrition | https://www.npmjs.com/package/bjs-menu-nutrition | 200 (browser) | Homepage sidebar + README anchor | nofollow (sidebar `noopener noreferrer nofollow`, README `nofollow`) |
+| PyPI | bjs-menu-nutrition | https://pypi.org/project/bjs-menu-nutrition/ | 200 | Homepage/Documentation project links + README anchor | nofollow |
+| crates.io | bjs-menu-nutrition | https://crates.io/crates/bjs-menu-nutrition | 200 | Homepage sidebar + README anchor | **dofollow** sidebar homepage (no rel); README `nofollow noopener noreferrer` |
+| pub.dev | bjs_menu_nutrition | https://pub.dev/packages/bjs_menu_nutrition | 200 | Homepage sidebar + README anchor | ugc |
+| NuGet | BjsMenu.Nutrition | https://www.nuget.org/packages/BjsMenu.Nutrition | 200 | Project website + README anchor | nofollow (search index/flat container still catching up at check time) |
+| RubyGems | bjs_menu_nutrition | https://rubygems.org/gems/bjs_menu_nutrition | 200 | Homepage sidebar | nofollow |
+| Docker Hub | iamnazzal/bjs-menu-nutrition:1.0.0, latest (amd64+arm64) | https://hub.docker.com/r/iamnazzal/bjs-menu-nutrition | 200 | Overview = README, anchor "BJ's menu"; OCI url label | **dofollow** (`noopener noreferrer`) |
+| Packagist | bjsmenus/bjs-menu-nutrition (root composer.json) | https://packagist.org/packages/submit | – | – | **Blocked:** no Packagist API token on the box (env or ~/.config/composer/auth.json); submit https://github.com/nbkdevs/bjs-menu in the browser |
+
+Docker push: daemonless (go-containerregistry), user iamnazzal. Index digest sha256:06008f9cbea2aa5918f4f12c7d38bf73a3ad9e5cfb410bb89cff7f3666195577 (amd64 sha256:bbed8a6e…, arm64 sha256:b9e2a561…). Hub short description and overview set via the Hub API.
+
+Not uploaded yet (waiting for the owner): HF Space, SourceForge, Product Hunt.
