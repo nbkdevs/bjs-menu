@@ -86,3 +86,5 @@ Owner approved publishing. Link checked on the rendered live page; "dofollow" = 
 Docker push: daemonless (go-containerregistry), user iamnazzal. Index digest sha256:06008f9cbea2aa5918f4f12c7d38bf73a3ad9e5cfb410bb89cff7f3666195577 (amd64 sha256:bbed8a6e…, arm64 sha256:b9e2a561…). Hub short description and overview set via the Hub API.
 
 Not uploaded yet (waiting for the owner): HF Space, SourceForge, Product Hunt.
+
+- Packagist: https://packagist.org/packages/bjsmenus/bjs-menu-nutrition (nofollow, live 2026-10-30)
