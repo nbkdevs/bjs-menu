@@ -60,3 +60,26 @@ app.*.map.json
 /releases/*.aab
 /releases/*.apk
 /browser-extensions/*/*.zip
+
+# softrank packages: build output and local deps (never commit)
+/vendor/
+/composer.lock
+.phpunit.cache/
+.phpunit.result.cache
+node_modules/
+packages/**/dist/
+packages/**/build/
+packages/**/target/
+packages/**/bin/Debug/
+packages/**/bin/Release/
+packages/**/obj/
+packages/**/*.egg-info/
+packages/**/__pycache__/
+packages/**/.pytest_cache/
+packages/**/.dart_tool/
+packages/pub/pubspec.lock
+packages/crates/Cargo.lock
+*.tgz
+*.gem
+*.nupkg
+*.snupkg

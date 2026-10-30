@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BJ's Meal Builder - nutrition totals for a BJ's Restaurant meal</title>
+<meta name="description" content="Pick BJ's Restaurant dishes and see total calories, protein, carbs, fat and sodium, with missing values flagged and allergens listed.">
+<style>
+  :root { --red:#b3122e; --ink:#1d1d1f; --mut:#6b6b70; --bg:#faf7f2; --card:#fff; --line:#e6e1d8; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; color:var(--ink); background:var(--bg); }
+  header { background:var(--red); color:#fff; padding:18px 20px; }
+  header h1 { margin:0; font-size:1.4rem; } header p { margin:4px 0 0; opacity:.9; font-size:.95rem; }
+  main { max-width:1000px; margin:0 auto; padding:16px; display:grid; gap:16px; grid-template-columns:1fr 1fr; }
+  @media (max-width:760px) { main { grid-template-columns:1fr; } }
+  section { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px; }
+  h2 { font-size:1.05rem; margin:0 0 10px; }
+  input, select { width:100%; padding:9px 10px; border:1px solid var(--line); border-radius:8px; font:inherit; }
+  .row { display:flex; gap:8px; margin-bottom:8px; } .row > * { flex:1; }
+  ul { list-style:none; margin:0; padding:0; max-height:420px; overflow:auto; }
+  li { display:flex; justify-content:space-between; align-items:center; gap:8px; padding:7px 4px; border-bottom:1px solid var(--line); }
+  li small { color:var(--mut); display:block; }
+  button { border:0; background:var(--red); color:#fff; border-radius:8px; padding:6px 10px; font:inherit; cursor:pointer; }
+  button.ghost { background:#eee; color:var(--ink); }
+  table { width:100%; border-collapse:collapse; margin-top:8px; } td { padding:6px 4px; border-bottom:1px solid var(--line); } td:last-child { text-align:right; font-weight:600; }
+  .note { color:var(--mut); font-size:.88rem; } .warn { color:#8a5a00; font-size:.9rem; }
+  footer { max-width:1000px; margin:0 auto; padding:8px 16px 24px; color:var(--mut); font-size:.88rem; }
+  footer a { color:var(--red); }
+</style>
+</head>
+<body>
+<header>
+  <h1>BJ's Meal Builder</h1>
+  <p>Pick dishes, see the meal's calories, protein, carbs, fat and sodium. Items with no published value are flagged, not guessed.</p>
+</header>
+<main>
+  <section>
+    <h2>Menu</h2>
+    <div class="row">
+      <input id="q" type="search" placeholder="Search, e.g. wings, pizookie, salmon" aria-label="Search the menu">
+    </div>
+    <div class="row">
+      <select id="cat" aria-label="Category"><option value="">All categories</option></select>
+      <input id="maxcal" type="number" min="0" placeholder="Max calories" aria-label="Max calories">
+    </div>
+    <div class="row">
+      <select id="without" aria-label="Avoid allergen"><option value="">Any allergens</option></select>
+    </div>
+    <ul id="list"></ul>
+  </section>
+  <section>
+    <h2>Your meal</h2>
+    <ul id="meal"><li class="note">Nothing added yet.</li></ul>
+    <table id="totals"></table>
+    <p id="partial" class="warn"></p>
+    <p id="allergens" class="note"></p>
+    <p class="note">A "+" means at least one item has no published value for that nutrient (or is listed per slice), so the real total is higher. Values are as published by the restaurant; check with your server about allergies.</p>
+  </section>
+</main>
+<footer>
+  Menu data and full per-item pages: <a href="https://bjsmenus.com/">BJ's menu</a> with prices and nutrition. Unofficial; not affiliated with BJ's Restaurants, Inc.
+</footer>
+<script>
+const N = [['cal','Calories','cal'],['protein','Protein','g'],['carbs','Carbs','g'],['fat','Fat','g'],['sodium','Sodium','mg']];
+let ITEMS = []; const meal = new Map();
+const norm = (s) => String(s).toLowerCase().replace(/['\u2018\u2019]/g,'').replace(/[^a-z0-9]+/g,' ').trim();
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const calOf = (i) => i.calText ? i.calText + ' cal' : (i.cal != null ? i.cal + ' cal' : 'calories not listed');
+function renderList() {
+  const words = norm($('q').value).split(' ').filter(Boolean), cat = $('cat').value, max = Number($('maxcal').value) || null, wo = $('without').value;
+  const hits = ITEMS.filter((i) => {
+    const n = norm(i.name);
+    if (!words.every((w) => n.includes(w))) return false;
+    if (cat && i.category !== cat) return false;
+    if (max && (i.cal == null || i.perSlice || i.cal > max)) return false;
+    if (wo && (i.allergens == null || i.allergens.includes(wo))) return false;
+    return true;
+  });
+  $('list').innerHTML = hits.slice(0, 200).map((i) => `<li><span>${esc(i.name)}<small>${esc(i.category)} · ${esc(calOf(i))}</small></span><button data-id="${i.id}">Add</button></li>`).join('') || '<li class="note">No matches.</li>';
+}
+function renderMeal() {
+  const rows = [...meal.entries()].map(([id, q]) => [ITEMS.find((i) => i.id === id), q]);
+  $('meal').innerHTML = rows.length ? rows.map(([i, q]) => `<li><span>${q} × ${esc(i.name)}<small>${esc(calOf(i))}</small></span><span><button class="ghost" data-dec="${i.id}">−</button> <button data-id="${i.id}">+</button></span></li>`).join('') : '<li class="note">Nothing added yet.</li>';
+  const missing = new Set();
+  $('totals').innerHTML = rows.length ? N.map(([k, label, unit]) => {
+    let sum = 0, miss = 0;
+    rows.forEach(([i, q]) => { if (i[k] == null || i.perSlice) { miss++; missing.add(i.name); } else sum += i[k] * q; });
+    const txt = miss === rows.length ? 'Not listed' : `${Math.round(sum).toLocaleString('en-US')} ${unit}${miss ? '+' : ''}`;
+    return `<tr><td>${label}</td><td>${txt}</td></tr>`;
+  }).join('') : '';
+  $('partial').textContent = missing.size ? '+ partial: no published value for ' + [...missing].join('; ') : '';
+  const al = new Set(), unk = [];
+  rows.forEach(([i]) => (i.allergens == null ? unk.push(i.name) : i.allergens.forEach((a) => al.add(a))));
+  $('allergens').textContent = rows.length ? (al.size ? 'Allergens in this meal: ' + [...al].sort().join(', ') + '.' : 'No listed allergens.') + (unk.length ? ' Allergen info unknown for: ' + unk.join('; ') + '.' : '') : '';
+}
+document.addEventListener('click', (e) => {
+  const add = e.target.dataset.id, dec = e.target.dataset.dec;
+  if (add) meal.set(add, Math.min(99, (meal.get(add) || 0) + 1));
+  if (dec) { const q = (meal.get(dec) || 0) - 1; q > 0 ? meal.set(dec, q) : meal.delete(dec); }
+  if (add || dec) renderMeal();
+});
+['q','cat','maxcal','without'].forEach((id) => $(id).addEventListener('input', renderList));
+fetch('menu.json').then((r) => r.json()).then((d) => {
+  ITEMS = d.items;
+  [...new Set(ITEMS.map((i) => i.category))].forEach((c) => $('cat').insertAdjacentHTML('beforeend', `<option>${esc(c)}</option>`));
+  [...new Set(ITEMS.flatMap((i) => i.allergens || []))].sort().forEach((a) => $('without').insertAdjacentHTML('beforeend', `<option value="${esc(a)}">Without ${esc(a)}</option>`));
+  renderList(); renderMeal();
+});
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 # BJ’s Meal Builder (Android)
 
-Flutter Android app for [bjsmenus.com](https://bjsmenus.com) — **Meal Builder** and **Nutrition** only. No prices.
+Flutter Android app for [BJ's menu](https://bjsmenus.com/) — **Meal Builder** and **Nutrition** only. No prices.
 
 ## Features
 

@@ -1,0 +1,48 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+foreach ([__DIR__ . '/../../../vendor/autoload.php', __DIR__ . '/../../../../../autoload.php'] as $a) {
+    if (is_file($a)) { require $a; break; }
+}
+if (!class_exists(\BjsMenus\Nutrition\Menu::class)) {
+    require __DIR__ . '/../src/Menu.php';
+}
+
+use BjsMenus\Nutrition\Menu;
+
+$args = array_slice($argv, 1);
+$cmd = array_shift($args);
+$labels = ['cal' => 'Calories', 'protein' => 'Protein', 'carbs' => 'Carbs', 'fat' => 'Fat', 'sodium' => 'Sodium'];
+$row = fn ($i) => sprintf('%s (%s) - %s', $i['name'], $i['category'], $i['calText'] ? $i['calText'] . ' cal' : ($i['cal'] !== null ? $i['cal'] . ' cal' : 'calories not listed'));
+$opt = function (string $n) use ($args) { $k = array_search($n, $args, true); return $k === false ? null : ($args[$k + 1] ?? null); };
+try {
+    switch ($cmd) {
+        case 'total':
+            $r = Menu::total($args);
+            foreach ($r['lines'] as $l) echo "{$l['qty']} x {$l['name']}\n";
+            echo "\n";
+            $missing = [];
+            foreach (Menu::NUTRIENTS as $k) {
+                echo str_pad($labels[$k], 9) . Menu::formatTotal($r['totals'][$k]) . "\n";
+                $missing = array_merge($missing, $r['totals'][$k]['missing']);
+            }
+            if ($missing) echo "\n+ partial: no published value (or per-slice only) for " . implode('; ', array_unique($missing)) . "\n";
+            if ($r['allergens']) echo 'Allergens: ' . implode(', ', $r['allergens']) . "\n";
+            break;
+        case 'search':
+            foreach (Menu::search(implode(' ', $args)) as $i) echo $row($i) . "\n";
+            break;
+        case 'filter':
+            $n = fn ($k) => $opt($k) === null ? null : (int) $opt($k);
+            foreach (Menu::filter($n('--max-cal'), $n('--min-protein'), $n('--max-sodium'), $opt('--without') ? explode(',', $opt('--without')) : [], $opt('--role')) as $i) echo $row($i) . "\n";
+            break;
+        default:
+            echo "Usage: bjs-menu-nutrition total \"BJ's Wagyu Burger\" \"2x Avocado Egg Rolls\" | search <words> | filter --max-cal 600 --without Milk\n";
+            exit($cmd === null ? 0 : 1);
+    }
+} catch (\InvalidArgumentException $e) {
+    fwrite(STDERR, $e->getMessage() . "\n");
+    exit(1);
+}

@@ -1,0 +1,22 @@
+[package]
+name = "bjs-menu-nutrition"
+version = "1.0.0"
+edition = "2021"
+rust-version = "1.70"
+description = "Offline BJ's Restaurant meal builder: total calories, protein, carbs, fat and sodium, flag missing values, filter by calories and allergens."
+license = "MIT"
+readme = "README.md"
+homepage = "https://bjsmenus.com/"
+repository = "https://github.com/nbkdevs/bjs-menu"
+keywords = ["nutrition", "calories", "menu", "meal", "cli"]
+categories = ["command-line-utilities", "science"]
+authors = ["BJ's Menus"]
+include = ["src/**", "README.md", "LICENSE", "Cargo.toml"]
+
+[lib]
+name = "bjs_menu_nutrition"
+path = "src/lib.rs"
+
+[[bin]]
+name = "bjs-menu-nutrition"
+path = "src/main.rs"

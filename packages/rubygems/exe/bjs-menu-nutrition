@@ -1,0 +1,50 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "json"
+require_relative "../lib/bjs_menu_nutrition"
+
+M = BjsMenuNutrition
+HELP = <<~TXT
+  bjs-menu-nutrition - BJ's Restaurant meal nutrition totals (offline)
+
+  Usage:
+    bjs-menu-nutrition total "BJ's Wagyu Burger" "2x Avocado Egg Rolls" [--json]
+    bjs-menu-nutrition search <words>
+    bjs-menu-nutrition filter [--max-cal N] [--min-protein N] [--max-sodium N] [--without Milk,Wheat] [--role main]
+    bjs-menu-nutrition categories
+TXT
+LABELS = { "cal" => "Calories", "protein" => "Protein", "carbs" => "Carbs", "fat" => "Fat", "sodium" => "Sodium" }.freeze
+
+args = ARGV.dup
+json = !args.delete("--json").nil?
+cmd = args.shift
+opt = ->(n) { (i = args.index(n)) ? args[i + 1] : nil }
+begin
+  case cmd
+  when "total"
+    r = M.total(args)
+    if json
+      puts JSON.pretty_generate(r)
+    else
+      r["lines"].each { |l| puts "#{l["qty"]} x #{l["name"]}" }
+      puts
+      M::NUTRIENTS.each { |k| puts LABELS[k].ljust(9) + M.format_total(r["totals"][k]) }
+      missing = M::NUTRIENTS.flat_map { |k| r["totals"][k]["missing"] }.uniq
+      puts "\n+ partial: no published value (or per-slice only) for #{missing.join("; ")}" unless missing.empty?
+      puts "Allergens: #{r["allergens"].join(", ")}" unless r["allergens"].empty?
+    end
+  when "search" then M.search(args.join(" ")).each { |i| puts M.row(i) }
+  when "filter"
+    num = ->(n) { opt.(n)&.to_i }
+    M.filter(max_cal: num.("--max-cal"), min_protein: num.("--min-protein"), max_sodium: num.("--max-sodium"),
+             without: (opt.("--without") || "").split(","), role: opt.("--role")).each { |i| puts M.row(i) }
+  when "categories" then puts M.categories
+  else
+    puts HELP
+    exit(cmd.nil? || %w[-h --help].include?(cmd) ? 0 : 1)
+  end
+rescue BjsMenuNutrition::Error => e
+  warn e.message
+  exit 1
+end

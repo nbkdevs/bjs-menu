@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <RootNamespace>BjsMenu.Nutrition</RootNamespace>
+    <PackageId>BjsMenu.Nutrition</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>BJ's Menus</Authors>
+    <Company>BJ's Menus</Company>
+    <Description>Offline BJ's Restaurant meal builder: total calories, protein, carbs, fat and sodium for a meal, flag items with no published value, and filter menu items by calories and allergens.</Description>
+    <PackageTags>bjs;menu;nutrition;calories;meal-builder;allergens;macros</PackageTags>
+    <PackageProjectUrl>https://bjsmenus.com/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/nbkdevs/bjs-menu</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="/" />
+    <None Include="../LICENSE" Pack="true" PackagePath="/" />
+  </ItemGroup>
+</Project>

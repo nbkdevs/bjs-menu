@@ -1,0 +1,13 @@
+{
+  "name": "bjs-menu-nutrition-server",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Docker image: BJ's Restaurant meal nutrition API and page",
+  "homepage": "https://bjsmenus.com/",
+  "license": "MIT",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "bjs-menu-nutrition",
+  "version": "1.0.0",
+  "description": "Offline BJ's Restaurant meal builder: total calories, protein, carbs, fat and sodium for a meal, flag missing values, and filter menu items by calories and allergens. Library + CLI, zero dependencies.",
+  "keywords": ["bjs", "bjs-restaurant", "menu", "nutrition", "calories", "meal-builder", "allergens", "macros", "cli"],
+  "homepage": "https://bjsmenus.com/",
+  "bugs": { "url": "https://github.com/nbkdevs/bjs-menu/issues" },
+  "repository": { "type": "git", "url": "git+https://github.com/nbkdevs/bjs-menu.git", "directory": "packages/npm" },
+  "license": "MIT",
+  "author": "BJ's Menus (https://bjsmenus.com/)",
+  "main": "lib/index.js",
+  "bin": { "bjs-menu-nutrition": "bin/cli.js" },
+  "files": ["lib/", "bin/", "README.md", "LICENSE"],
+  "scripts": { "test": "node --test test/" },
+  "engines": { "node": ">=18" }
+}

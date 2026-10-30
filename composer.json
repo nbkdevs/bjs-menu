@@ -1,0 +1,21 @@
+{
+  "name": "bjsmenus/bjs-menu-nutrition",
+  "description": "Offline BJ's Restaurant meal builder: total calories, protein, carbs, fat and sodium, flag items with no published value, and filter the menu by calories and allergens. Zero dependencies.",
+  "type": "library",
+  "keywords": ["bjs", "bjs-restaurant", "menu", "nutrition", "calories", "meal-builder", "allergens", "macros"],
+  "homepage": "https://bjsmenus.com/",
+  "license": "MIT",
+  "authors": [{ "name": "BJ's Menus", "homepage": "https://bjsmenus.com/" }],
+  "support": {
+    "issues": "https://github.com/nbkdevs/bjs-menu/issues",
+    "source": "https://github.com/nbkdevs/bjs-menu"
+  },
+  "require": { "php": ">=8.0", "ext-json": "*" },
+  "require-dev": { "phpunit/phpunit": "^9.6 || ^10.5 || ^11.0" },
+  "autoload": { "psr-4": { "BjsMenus\\Nutrition\\": "packages/packagist/src/" } },
+  "autoload-dev": { "psr-4": { "BjsMenus\\Nutrition\\Tests\\": "packages/packagist/tests/" } },
+  "bin": ["packages/packagist/bin/bjs-menu-nutrition"],
+  "scripts": { "test": "phpunit -c packages/packagist/phpunit.xml" },
+  "config": { "sort-packages": true },
+  "minimum-stability": "stable"
+}

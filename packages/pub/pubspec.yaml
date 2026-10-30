@@ -1,0 +1,21 @@
+name: bjs_menu_nutrition
+description: Offline BJ's Restaurant meal builder. Total calories, protein, carbs, fat and sodium, flag missing values, and filter menu items by calories and allergens. Pure Dart with a CLI.
+version: 1.0.0
+homepage: https://bjsmenus.com/
+repository: https://github.com/nbkdevs/bjs-menu/tree/main/packages/pub
+issue_tracker: https://github.com/nbkdevs/bjs-menu/issues
+topics:
+  - nutrition
+  - calories
+  - menu
+  - meal-planner
+
+environment:
+  sdk: ^3.0.0
+
+executables:
+  bjs_menu_nutrition:
+
+dev_dependencies:
+  lints: ^5.0.0
+  test: ^1.25.0
