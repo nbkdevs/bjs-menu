@@ -88,3 +88,10 @@ Docker push: daemonless (go-containerregistry), user iamnazzal. Index digest sha
 Not uploaded yet (waiting for the owner): HF Space, SourceForge, Product Hunt.
 
 - Packagist: https://packagist.org/packages/bjsmenus/bjs-menu-nutrition (nofollow, live 2026-10-30)
+
+## Update 3 Nov 2026 (PKT)
+
+- **GitHub homepage set**: `gh repo edit --homepage https://bjsmenus.com/` and verified via the API (About "Website" = https://bjsmenus.com/).
+- **HF Space live**: https://huggingface.co/spaces/iamnazzal/bjs-meal-builder (sdk static, commit 7b54c9f, RUNNING, HTTP 200). README anchor "BJ's menu" -> https://bjsmenus.com/ renders `rel="nofollow"` (**nofollow**). The app iframe (iamnazzal-bjs-meal-builder.static.hf.space) has the link with no rel, but on the hf.space subdomain.
+- **Signed APK verified, no rebuild needed**: /workspace/uploads/bjs-meal-builder-1.0.0-release.apk (59,984,407 bytes). It is identical to build/app/outputs/flutter-apk/app-release.apk, which is gitignored. Package com.bjsmenus.bjs_meal_builder, versionCode 1 / versionName 1.0.0. `apksigner verify`: v2 OK, signer CN=NBK Devs, O=NBK Devs, C=PK. Icons: releases/app_icon_512x512.png and releases/app_icon_114x114.png. Screenshots: releases/amazon/screenshots/ (4 at 1080x1920 + 4 at 800x1280).
+- **Tracking sheet: not written.** The brief's sheet (1Z1gOCkS…, tab gid 62226115 "Softrank") is titled "Ultimate Backlinks Sheet for Ore Finder" and has only Ore Finder rows. Drive has no BJ's-specific sheet. Other projects each have their own sheet, so I wrote nothing. The rows are ready in /workspace/softrank/sheet-rows/softrank-rows-2026-10-30.csv, plus the HF Space.
