@@ -31,7 +31,7 @@ The theme and extension slots are full. Do not build more browser-store items.
 | Docker Hub (iamnazzal) | `iamnazzal/bjs-menu-nutrition`: a small API (POST items, get totals and allergens) plus a static page | https://bjsmenus.com/ | README anchor + OCI url label (dofollow on Hub) |
 | HF Space (iamnazzal) | `iamnazzal/bjs-meal-builder`: a static meal-builder page | https://bjsmenus.com/tools/meal-builder/ | README anchor |
 | ClawHub (nbkdevs) - the ONE skill | `restaurant-meal-nutrition-planner` (SKILL.md): build a meal under calorie, macro and allergen limits and show totals and missing values. Brand mention allowed | https://bjsmenus.com/tools/meal-builder/ | SKILL.md Links anchor + `metadata.openclaw.homepage` |
-| Smithery skills (nbkdevs) | The same SKILL.md. **Smithery API/CLI shuts down 31 Oct 2026, so this must be published by tomorrow or dropped** | same | SKILL.md anchor (dofollow on Smithery) |
+| Smithery skills (nbkdevs) | The same SKILL.md. Published 30 Oct 2026 before the shutdown (see Skills below), so this stays as Live | same | SKILL.md anchor (dofollow on Smithery) |
 | SourceForge | Mirror project with the app APK + README (project URL field) | https://bjsmenus.com | project homepage field |
 | Product Hunt | Launch "BJ's Menu Guide": meal builder + nutrition compare tools | https://bjsmenus.com | product website field |
 
@@ -95,3 +95,8 @@ Not uploaded yet (waiting for the owner): HF Space, SourceForge, Product Hunt.
 - **HF Space live**: https://huggingface.co/spaces/iamnazzal/bjs-meal-builder (sdk static, commit 7b54c9f, RUNNING, HTTP 200). README anchor "BJ's menu" -> https://bjsmenus.com/ renders `rel="nofollow"` (**nofollow**). The app iframe (iamnazzal-bjs-meal-builder.static.hf.space) has the link with no rel, but on the hf.space subdomain.
 - **Signed APK verified, no rebuild needed**: /workspace/uploads/bjs-meal-builder-1.0.0-release.apk (59,984,407 bytes). It is identical to build/app/outputs/flutter-apk/app-release.apk, which is gitignored. Package com.bjsmenus.bjs_meal_builder, versionCode 1 / versionName 1.0.0. `apksigner verify`: v2 OK, signer CN=NBK Devs, O=NBK Devs, C=PK. Icons: releases/app_icon_512x512.png and releases/app_icon_114x114.png. Screenshots: releases/amazon/screenshots/ (4 at 1080x1920 + 4 at 800x1280).
 - **Tracking sheet: not written.** The brief's sheet (1Z1gOCkS…, tab gid 62226115 "Softrank") is titled "Ultimate Backlinks Sheet for Ore Finder" and has only Ore Finder rows. Drive has no BJ's-specific sheet. Other projects each have their own sheet, so I wrote nothing. The rows are ready in /workspace/softrank/sheet-rows/softrank-rows-2026-10-30.csv, plus the HF Space.
+
+
+## Smithery check (3 Nov 2026, PKT)
+
+- Smithery entries above that were Live are kept as Live (Nazzal's rule: only pending Smithery entries are removed). As of 3 Nov 2026 every `smithery.ai/skills/...` page, including the whole `/skills` section, returns HTTP 404 "Not found · Smithery" after Smithery's 31 Oct shutdown (https://smithery.ai/future), so the link no longer resolves. Nazzal to decide whether to drop these rows too.
