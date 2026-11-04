@@ -107,13 +107,17 @@ Not uploaded yet (waiting for the owner): HF Space, SourceForge, Product Hunt.
 Findings only (no sheet):
 - LIVE Libraries io (Python Package, Nofollow) https://libraries.io/pypi/bjs-menu-nutrition
 - LIVE PyPI Stats (Python Package, Dofollow) https://pypistats.org/packages/bjs-menu-nutrition
-- LIVE Libraries io (Rust package, Nofollow) https://libraries.io/cargo/bjs-menu-nutrition
 - LIVE Docs rs (Rust package, Dofollow) https://docs.rs/bjs-menu-nutrition/latest/bjs_menu_nutrition/index.html
+- LIVE NPM io (NPM Package, Dofollow) https://npm.io/package/bjs-menu-nutrition
+- socket.dev: Cloudflare 403 from curl, couldn't verify (not added).
+
+## One link per domain (4 Nov 2026, PKT)
+
+Nazzal's rule: log only ONE link per domain. The list above was trimmed to one page per domain (kept: libraries.io PyPI page, docs.rs /latest/<crate>/index.html). Removed:
+- LIVE Libraries io (Rust package, Nofollow) https://libraries.io/cargo/bjs-menu-nutrition
 - LIVE Docs rs (Rust package, Dofollow) https://docs.rs/crate/bjs-menu-nutrition/latest
 - LIVE Libraries io (NPM Package, Nofollow) https://libraries.io/npm/bjs-menu-nutrition
-- LIVE NPM io (NPM Package, Dofollow) https://npm.io/package/bjs-menu-nutrition
 - LIVE Libraries io (Dart Package, Nofollow) https://libraries.io/pub/bjs_menu_nutrition
 - LIVE Libraries io (C Package, Nofollow) https://libraries.io/nuget/BjsMenu.Nutrition
 - LIVE Libraries io (Ruby Package, Nofollow) https://libraries.io/rubygems/bjs_menu_nutrition
 - LIVE Libraries io (Php Package, Nofollow) https://libraries.io/packagist/bjsmenus%2Fbjs-menu-nutrition
-- socket.dev: Cloudflare 403 from curl, couldn't verify (not added).
