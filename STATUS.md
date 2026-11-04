@@ -121,3 +121,10 @@ Nazzal's rule: log only ONE link per domain. The list above was trimmed to one p
 - LIVE Libraries io (C Package, Nofollow) https://libraries.io/nuget/BjsMenu.Nutrition
 - LIVE Libraries io (Ruby Package, Nofollow) https://libraries.io/rubygems/bjs_menu_nutrition
 - LIVE Libraries io (Php Package, Nofollow) https://libraries.io/packagist/bjsmenus%2Fbjs-menu-nutrition
+
+## Amazon Appstore submission (4 Nov 2026, PKT)
+- Submitted 4 Nov 2026 on the NBK Devs Amazon developer account, with Nazzal's OK. Estimated live by 9 Nov 2026.
+- App ID amzn1.devportal.mobileapp.0c08534d059e4118ac6435d4115c2d5c. ASIN pending; URL format https://www.amazon.<tld>/gp/product/<ASIN> (11 TLDs).
+- Description has no URL (Nazzal's rule). Privacy URL https://bjsmenus.com/privacy-policy/.
+- **Gap:** the support website field was left on the account default, so https://bjsmenus.com/ isn't in it yet. Fix by editing the listing once it is live.
+- Status: Pending Review.
